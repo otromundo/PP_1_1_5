@@ -13,10 +13,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/test_db";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "1@qwerty";
+    private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/test_db";
+    private static final String DB_USERNAME = "root";
+    private static final String DB_PASSWORD = "1@qwerty";
     private static SessionFactory sessionFactory = null;
 
     public static SessionFactory getSessionFactory() {
@@ -26,10 +26,10 @@ public class Util {
                 Properties settings = new Properties();
 
                 // Data source
-                settings.put(Environment.DRIVER, DRIVER);
-                settings.put(Environment.URL, URL);
-                settings.put(Environment.USER, USERNAME);
-                settings.put(Environment.PASS, PASSWORD);
+                settings.put(Environment.DRIVER, DB_DRIVER);
+                settings.put(Environment.URL, DB_URL);
+                settings.put(Environment.USER, DB_USERNAME);
+                settings.put(Environment.PASS, DB_PASSWORD);
 
                 // Hibernate configuration
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
@@ -56,8 +56,8 @@ public class Util {
         Connection connection = null;
 
         try {
-            Class.forName(DRIVER);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Class.forName(DB_DRIVER);
+            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
